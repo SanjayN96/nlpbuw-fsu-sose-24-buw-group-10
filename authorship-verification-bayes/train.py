@@ -3,8 +3,8 @@ from pathlib import Path
 from joblib import dump
 from sklearn.feature_extraction.text import CountVectorizer
 #from sklearn.naive_bayes import MultinomialNB
-#from sklearn.naive_bayes import GaussianNB
-from sklearn.tree import DecisionTreeClassifier
+from sklearn.naive_bayes import ComplementNB
+#from sklearn.tree import DecisionTreeClassifier
 from sklearn.pipeline import Pipeline
 from tira.rest_api_client import Client
 
@@ -26,7 +26,7 @@ if __name__ == "__main__":
 
     # Train the model
     model = Pipeline(
-        [("vectorizer", CountVectorizer()), ("classifier", DecisionTreeClassifier())]
+        [("vectorizer", CountVectorizer()), ("classifier", ComplementNB())]
     )
     model.fit(df["text"], df["generated"])
 
